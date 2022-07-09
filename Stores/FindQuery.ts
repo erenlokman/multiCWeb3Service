@@ -4,17 +4,14 @@ const Moralis = require("moralis/node");
 // const appId = "YOUR-APP-ID";
 // const masterKey = "YOUR-MASTER-KEY";
 
-const SaveData = async () => {
+const FindQuery = async () => {
     await Moralis.start({ serverUrl, appId, masterKey });
 
     const Monster = Moralis.Object.extend("Monster");
-    const monster = new Monster();
+    const query = new Moralis.Query("Monster");
 
-    monster.set("strength", 1024);
-    monster.set("ownerName", "Aegon");
-    monster.set("canFly", true);
-
-    await monster.save();
+    const results = await query.find();
+    console.log(results);
 };
 
-SaveData();
+FindQuery();
